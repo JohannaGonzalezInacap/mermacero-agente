@@ -1,0 +1,9 @@
+proveedor,tipo_producto,precio_unitario_clp,moq_unidades,tiempo_entrega_dias,zona_despacho,garantia,contacto
+Vidrios Boro Andino,Vasos rocks borosilicato,2200,100,7,Región Metropolitana,12 meses por defecto de fabricación,contacto@vidriosboroandino.cl
+CristalTech Sur,Copas de vino borosilicato,3500,50,10,Nacional,6 meses,ventas@cristaltechsur.cl
+Borosilicato del Pacífico,Vasos highball,1900,200,5,"Región Metropolitana, Valparaíso",12 meses,contacto@bpacifico.cl
+VitroExpress,Vasos shot,1200,300,3,Nacional (envío express),3 meses,pedidos@vitroexpress.cl
+Andes Glass Supply,Copas de cóctel,4200,50,14,Nacional,12 meses,contacto@andesglass.cl
+Cristalería del Sur,Vasos rocks y highball,2000,150,8,"Región Metropolitana, Biobío",6 meses,info@cristaleriadelsur.cl
+Borotherm Chile,Copas resistentes a choque térmico,3800,80,12,Nacional,18 meses,ventas@borotherm.cl
+GlassPro Express,"Set mixto (rocks, highball, shot)",2500,250,4,Región Metropolitana,6 meses,contacto@glasspro.cl

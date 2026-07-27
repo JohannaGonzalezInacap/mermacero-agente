@@ -78,13 +78,20 @@ python app.py
 - "¿Cuándo conviene cambiar a vidrio de borosilicato?"
 
 ## Ejemplos de respuestas generadas por el agente
+![esto es una imagen](Que_es_una_merma.png)
+![esto es una imagen](Se_pierde_mucha_cristaleria.png)
+![esto es una imagen](Porque_borosilicato.png)
+![esto es una imagen](Garantia.png)
 
-> _Esta sección se completa con capturas o texto real una vez probado el agente
-> con tu API key. Ejecuta el proyecto en local, haz las preguntas de arriba y
-> pega aquí las respuestas reales antes de la entrega final._
 
 **Pregunta:** ¿Qué proveedor conviene para un bar de alta rotación con entrega rápida?
-**Respuesta:** _(pendiente — completar con la respuesta real del agente)_
+**Respuesta:** Convendría un proveedor que ofrezca vidrio de borosilicato con entrega rápida y resistencia a choques térmicos y golpes. Considerando estos requisitos, algunos proveedores que podrían ser adecuados son:
+
+- VitroExpress: Entrega en 3 días, pero con un pedido mínimo de 300 unidades y solo para vasos shot.
+- GlassPro Express: Entrega en 4 días, con un pedido mínimo de 250 unidades y ofrece un set mixto.
+- Borosilicato del Pacífico: Entrega en 5 días, con un pedido mínimo de 200 unidades y ofrece vasos highball.
+
+Es importante evaluar el tipo de vidrio necesario y el pedido mínimo para tomar la mejor decisión según las necesidades del bar.
 
 ## Deploy en OCI
 
