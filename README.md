@@ -78,10 +78,10 @@ python app.py
 - "¿Cuándo conviene cambiar a vidrio de borosilicato?"
 
 ## Ejemplos de respuestas generadas por el agente
-![esto es una imagen](Que_es_una_merma.png)
-![esto es una imagen](Se_pierde_mucha_cristaleria.png)
-![esto es una imagen](Porque_borosilicato.png)
-![esto es una imagen](Garantia.png)
+![esto es una imagen](img/Que_es_una_merma.png)
+![esto es una imagen](img/Se_pierde_mucha_cristaleria.png)
+![esto es una imagen](img/Porque_borosilicato.png)
+![esto es una imagen](img/Garantia.png)
 
 
 **Pregunta:** ¿Qué proveedor conviene para un bar de alta rotación con entrega rápida?
