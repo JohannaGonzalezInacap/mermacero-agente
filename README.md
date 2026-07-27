@@ -93,7 +93,7 @@ Aplicación desplegada en Vercel:
 
 - Enlace público: https://mermacero-agente.vercel.app/
 - Captura de pantalla de la aplicación funcionando: 
-![Esto es una imagen](Deploy-Vercel.png)
+![Esto es una imagen](img/Deploy-Vercel.png)
 
 ## Estructura del repositorio
 
