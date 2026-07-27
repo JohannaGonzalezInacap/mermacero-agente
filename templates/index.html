@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MermaCero — Agente de cristalería</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0f1c17;
+    --panel: #16261f;
+    --panel-alt: #1d3128;
+    --crack: #d9a441;
+    --crack-dim: #7a5f2c;
+    --text: #f0ece0;
+    --text-dim: #a9b8b0;
+    --user-bubble: #24392f;
+    --agent-bubble: #223b30;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(217,164,65,0.07), transparent 40%),
+      var(--bg);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    color: var(--text);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+  }
+  .card{
+    width:100%;
+    max-width: 560px;
+    background: var(--panel);
+    border-radius: 14px;
+    overflow:hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    border: 1px solid rgba(217,164,65,0.15);
+  }
+  header{
+    padding: 22px 24px 18px;
+    position: relative;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand svg{ flex-shrink:0; }
+  .brand h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight:700;
+    margin:0;
+    letter-spacing: 0.01em;
+  }
+  header p{
+    margin: 6px 0 0;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    line-height:1.4;
+  }
+  .crack-line{
+    height:1px;
+    margin: 16px 0 0;
+    background: linear-gradient(90deg, var(--crack) 0%, var(--crack-dim) 35%, transparent 70%);
+    position: relative;
+  }
+  .crack-line::after{
+    content:"";
+    position:absolute; top:-3px; left:38%;
+    width:6px; height:7px;
+    border-left: 1px solid var(--crack);
+    transform: rotate(20deg);
+  }
+  #log{
+    height: 360px;
+    overflow-y:auto;
+    padding: 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background: var(--bg);
+  }
+  .msg{
+    max-width: 82%;
+    padding: 10px 13px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    line-height:1.45;
+    white-space: pre-wrap;
+  }
+  .msg.user{
+    align-self:flex-end;
+    background: var(--user-bubble);
+    border-bottom-right-radius: 2px;
+  }
+  .msg.agent{
+    align-self:flex-start;
+    background: var(--agent-bubble);
+    border-bottom-left-radius: 2px;
+    border-left: 2px solid var(--crack);
+  }
+  .msg.error{
+    align-self:flex-start;
+    background: #3a2020;
+    border-left: 2px solid #d94141;
+    color:#f2c9c9;
+  }
+  form{
+    display:flex;
+    gap:8px;
+    padding: 14px;
+    background: var(--panel-alt);
+  }
+  input[type="text"]{
+    flex:1;
+    border:none;
+    border-radius: 8px;
+    padding: 11px 13px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+  }
+  input[type="text"]:focus{
+    outline: 2px solid var(--crack);
+    outline-offset: 1px;
+  }
+  button{
+    border:none;
+    border-radius:8px;
+    padding: 0 18px;
+    background: var(--crack);
+    color: #1a1305;
+    font-weight:600;
+    font-family:'Space Grotesk', sans-serif;
+    cursor:pointer;
+  }
+  button:disabled{ opacity:0.5; cursor:default; }
+  .hint{
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    padding: 0 20px 14px;
+    background: var(--bg);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="brand">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 2H17L16 13C16 16 14 18 12 18C10 18 8 16 8 13L7 2Z" stroke="#d9a441" stroke-width="1.3" stroke-linejoin="round"/>
+          <path d="M9 2L12 9L10 11" stroke="#d9a441" stroke-width="1" opacity="0.6"/>
+          <path d="M12 18V22" stroke="#d9a441" stroke-width="1.3"/>
+          <path d="M8.5 22H15.5" stroke="#d9a441" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <h1>MermaCero</h1>
+      </div>
+      <p>Control de mermas de cristalería y recomendación de proveedores de vidrio de borosilicato para bares.</p>
+      <div class="crack-line"></div>
+    </header>
+
+    <div id="log"></div>
+    <p class="hint">Ej.: "¿Qué proveedor conviene para un bar de alta rotación?" · "¿Qué es una merma?"</p>
+
+    <form id="form">
+      <input type="text" id="question" placeholder="Escribe tu pregunta..." autocomplete="off" />
+      <button type="submit" id="send">Enviar</button>
+    </form>
+  </div>
+
+<script>
+  const log = document.getElementById('log');
+  const form = document.getElementById('form');
+  const input = document.getElementById('question');
+  const button = document.getElementById('send');
+
+  function addMessage(text, cls) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + cls;
+    div.textContent = text;
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    addMessage(question, 'user');
+    input.value = '';
+    button.disabled = true;
+
+    try {
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        addMessage(data.answer, 'agent');
+      } else {
+        addMessage('Error: ' + (data.error || 'algo salió mal'), 'error');
+      }
+    } catch (err) {
+      addMessage('No se pudo conectar con el agente.', 'error');
+    } finally {
+      button.disabled = false;
+      input.focus();
+    }
+  });
+</script>
+</body>
+</html>
