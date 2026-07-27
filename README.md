@@ -4,17 +4,14 @@ Challenge final del programa **Oracle Next Education (ONE)** en alianza con **Al
 
 ## Descripción general
 
-MermaCero es un agente de inteligencia artificial pensado para dueños de bares y
-restobares. Responde preguntas sobre:
+MermaCero es un agente de inteligencia artificial pensado para dueños de bares y restobares. Responde preguntas sobre:
 
 - Qué es una merma de cristalería y cuáles son sus causas más comunes.
 - Cómo calcular el costo mensual de las pérdidas de vasos y copas.
 - Cuándo conviene cambiar a vidrio de borosilicato.
-- Qué proveedor de vidrio de borosilicato conviene según precio, tiempo de entrega,
-  cantidad mínima de pedido o garantía.
+- Qué proveedor de vidrio de borosilicato conviene según precio, tiempo de entrega, cantidad mínima de pedido o garantía.
 
-El agente responde exclusivamente en base al contenido de dos documentos fuente:
-un FAQ en PDF y un catálogo de proveedores en CSV.
+El agente responde exclusivamente en base al contenido de dos documentos fuente: un FAQ en PDF y un catálogo de proveedores en CSV.
 
 ## Arquitectura de la solución
 
@@ -33,10 +30,7 @@ Groq API (Llama 3.3 70B) ◄──── contexto (system prompt)
 Respuesta en JSON → interfaz de chat (templates/index.html)
 ```
 
-El contexto de los documentos se carga una sola vez al iniciar la aplicación y se
-inyecta en el `system prompt` de cada consulta al modelo. No se usa una base de
-datos vectorial: dado el tamaño acotado de los documentos, se pasa el contenido
-completo como contexto.
+El contexto de los documentos se carga una sola vez al iniciar la aplicación y se inyecta en el `system prompt` de cada consulta al modelo. No se usa una base de datos vectorial: dado el tamaño acotado de los documentos, se pasa el contenido completo como contexto.
 
 ## Tecnologías utilizadas
 
@@ -45,7 +39,7 @@ completo como contexto.
 - **pypdf** — extracción de texto del documento PDF
 - **csv (librería estándar)** — lectura del catálogo de proveedores
 - **HTML/CSS/JS vanilla** — interfaz de chat mínima
-- **Oracle Cloud Infrastructure (OCI Compute)** — hosting de la aplicación
+- **Vercel** — hosting de la aplicación
 
 ## Instrucciones para ejecutar el proyecto
 
@@ -93,12 +87,13 @@ python app.py
 
 Es importante evaluar el tipo de vidrio necesario y el pedido mínimo para tomar la mejor decisión según las necesidades del bar.
 
-## Deploy en OCI
+## Deploy en VERCEL
 
-_Esta sección se completa al desplegar en Oracle Cloud Infrastructure:_
+Aplicación desplegada en Vercel:
 
-- Enlace público: `http://<IP_PUBLICA>:5000`
-- Captura de pantalla de la aplicación funcionando: `docs/deploy-screenshot.png`
+- Enlace público: https://mermacero-agente.vercel.app/
+- Captura de pantalla de la aplicación funcionando: 
+![Esto es una imagen](Deploy-Vercel.png)
 
 ## Estructura del repositorio
 
@@ -116,3 +111,5 @@ mermacero-agente/
 │   └── index.html           # Interfaz de chat
 └── README.md
 ```
+
+Aplicación creada por: Johanna González 💻
